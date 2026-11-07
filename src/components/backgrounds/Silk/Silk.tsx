@@ -191,7 +191,7 @@ void main() {
   if (uLightMode > 0.5) {
     float fold = smoothstep(0.28, 0.9, pattern);
     float specular = smoothstep(0.72, 0.98, pattern);
-    vec3 shadowColor = uColor * (0.72 - 0.12 * uDepth);
+    vec3 shadowColor = uColor * (0.94 - 0.03 * uDepth);
     vec3 bodyColor = min(uColor * 1.18, vec3(1.0));
     vec3 lightBase = mix(shadowColor, bodyColor, fold) * mix(1.0, relief, 0.6);
     lightBase = mix(lightBase, vec3(1.0), clamp(specular * 0.92 + shine * 0.22 + bloom * uGlow * 0.2, 0.0, 1.0));

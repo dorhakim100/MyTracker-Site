@@ -173,6 +173,12 @@ vec4 draw(vec2 uv) {
 
   vec3 finalCol = mix(darkCol, lightCol, bgLuminance);
   float alpha = max(max(finalCol.r, finalCol.g), finalCol.b);
+  if (bgLuminance > 0.45) {
+    float glow = clamp(v0 * 0.85 + echo * 0.8 + bloom * 0.4 + v1 * 0.2, 0.0, 1.0);
+    vec3 tint = mix(colBase, vec3(1.0), clamp(v1 * 0.45 + heat * 0.2, 0.0, 0.75));
+    finalCol = tint;
+    alpha = glow;
+  }
   return vec4(finalCol / (alpha + 1e-5), alpha);
 }
 

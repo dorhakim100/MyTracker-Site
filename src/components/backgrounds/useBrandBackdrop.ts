@@ -17,9 +17,9 @@ const lightColors: BrandColors = {
   dotBase: '#8ecfc8',
   dotActive: '#00695c',
   dotOpacity: 0.64,
-  orb: ['#004d40', '#009688', '#80cbc4'],
-  orbOpacity: 0.9,
-  silk: '#6ec9c0',
+  orb: ['#9fe0d8', '#c8f4ef', '#f4fffd'],
+  orbOpacity: 1,
+  silk: '#d8f7f4',
   silkSheen: '#ffffff',
 }
 

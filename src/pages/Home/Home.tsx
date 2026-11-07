@@ -218,7 +218,7 @@ export function Home() {
           <div className='hero-orb'>
             <Orb
               colors={colors.orb}
-              backgroundColor='#000000'
+              backgroundColor={dark ? '#000000' : '#f4fbfa'}
               size={wide ? 0.74 : 0.68}
               glow={0.85}
               bleed={0.55}
@@ -251,8 +251,8 @@ export function Home() {
             speed={coarse ? 1.6 : 2.4}
             scale={wide ? 1.05 : 1.35}
             rotation={0.28}
-            sheen={dark ? 0.7 : 0.38}
-            depth={dark ? 0.42 : 0.3}
+            sheen={dark ? 0.7 : 0.62}
+            depth={dark ? 0.42 : 0.1}
             glow={coarse ? 0.08 : 0.28}
             ripple={0.55}
             wave={1}

@@ -47,6 +47,8 @@
   text-align: start;
 
   .hero-copy {
+    position: relative;
+    z-index: 3;
     max-width: 34rem;
     animation: rise 320ms ease-out both;
 
@@ -60,7 +62,7 @@
 
   .hero-shot-wrap {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     width: min(280px, 78vw);
     justify-self: center;
     animation: rise 340ms ease-out 90ms both;
