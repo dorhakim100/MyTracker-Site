@@ -1,0 +1,18 @@
+{
+  "headline": "Food and training, in one place",
+  "sentence": "MyTracker is a diary for what you eat and how you train.",
+  "shotDiary": "Diary",
+  "shotWorkouts": "Workouts",
+  "shotFood": "Food search",
+  "altDashboard": "MyTracker dashboard on a phone",
+  "altDiary": "MyTracker food diary on a phone",
+  "altWorkouts": "MyTracker workouts on a phone",
+  "altFood": "MyTracker food search on a phone",
+  "logTitle": "Log food",
+  "logBody": "Search, scan a barcode, and keep the day's meals.",
+  "trainTitle": "Train",
+  "trainBody": "Build workouts and track the sets you finish.",
+  "progressTitle": "See progress",
+  "progressBody": "Watch weight, macros, and training move over time.",
+  "support": "Questions? Email us"
+}

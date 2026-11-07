@@ -1,0 +1,23 @@
+{
+  "updated": "Updated 7 November 2026",
+  "whoTitle": "Who we are",
+  "whoBody": "MyTracker is an app for logging food and workouts.",
+  "collectTitle": "What we collect today",
+  "collectIntro": "Today the app collects only the following.",
+  "account": "Account details: your name, email, and a password stored by the server.",
+  "camera": "Camera: used to scan product barcodes.",
+  "photos": "Photos you choose for body-fat records.",
+  "healthRead": "Health data we read: steps, active calories, distance, and flights climbed.",
+  "healthWrite": "Health data we write: body weight, only when you log a weight.",
+  "messages": "Messages, including text and media, between a trainer and a trainee.",
+  "whyTitle": "Why",
+  "whyBody": "To run the diary, workouts, and progress features you asked for.",
+  "notTitle": "What we do not do",
+  "notBody": "We do not sell this data and we do not use it for advertising.",
+  "deleteTitle": "Deletion",
+  "deleteBody": "You can delete your account inside the app, from your profile. That deletion removes the account and the data attached to it.",
+  "changesTitle": "Changes",
+  "changesBody": "If a new feature needs data that is not listed here, this page is updated first and the date above changes.",
+  "contactTitle": "Contact",
+  "contactLead": "Email us at"
+}

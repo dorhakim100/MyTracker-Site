@@ -1,0 +1,19 @@
+// Change --primary-color to recolor the site. The other brand colors follow it.
+
+:root {
+  --primary-color: #009688;
+  --primary-color-dark: #00695c;
+  --primary-color-darker: #004d40;
+  --primary-color-light: #4db6ac;
+  --canvas-color: color-mix(in srgb, var(--primary-color) 7%, white);
+  --surface-color: #ffffff;
+  --ink-on-canvas: #05090a;
+  --ink-on-surface: #1c292a;
+}
+
+html.dark-mode {
+  --canvas-color: #0b1415;
+  --surface-color: #112021;
+  --ink-on-canvas: #e7eeee;
+  --ink-on-surface: #c8d2d2;
+}
