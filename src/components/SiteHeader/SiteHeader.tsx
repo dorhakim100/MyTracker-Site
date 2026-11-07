@@ -6,6 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
+import { smoothScroll } from '../../services/scroll'
 import { currentTheme, toggleTheme, type ThemeMode } from '../../services/theme'
 import { siteHeaderNs } from './locals'
 import './locals'
@@ -56,7 +57,7 @@ export function SiteHeader() {
 
   return (
     <header className='site-header-container' ref={headerRef}>
-      <NavLink to='/' className='brand' end>
+      <NavLink to='/' className='brand' end onClick={smoothScroll}>
         <img src='/logo-square.png' alt='MyTracker' />
       </NavLink>
 
@@ -67,6 +68,7 @@ export function SiteHeader() {
             to={item.to}
             end={item.end}
             className={({ isActive }) => (isActive ? 'tab active' : 'tab')}
+            onClick={smoothScroll}
           >
             {t(item.key)}
           </NavLink>
@@ -110,6 +112,7 @@ export function SiteHeader() {
               to={item.to}
               end={item.end}
               className={({ isActive }) => (isActive ? 'tab active' : 'tab')}
+              onClick={smoothScroll}
             >
               {t(item.key)}
             </NavLink>

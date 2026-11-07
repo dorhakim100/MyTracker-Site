@@ -17,9 +17,13 @@ export function Privacy() {
 
   return (
     <article className='privacy-container'>
+      <h1>{t('pageTitle')}</h1>
       <p className='updated'>{t('updated')}</p>
-      <h1>{t('whoTitle')}</h1>
-      <p>{t('whoBody')}</p>
+      <h2>{t('whoTitle')}</h2>
+      <p>
+        {t('whoBody')}{' '}
+        <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+      </p>
 
       <h2>{t('collectTitle')}</h2>
       <p>{t('collectIntro')}</p>
