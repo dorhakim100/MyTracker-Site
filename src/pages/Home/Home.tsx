@@ -12,6 +12,9 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { FloatingDumbbell } from '../../components/FloatingDumbbell/FloatingDumbbell'
+import Orb from '../../components/backgrounds/Orb/Orb'
+import Silk from '../../components/backgrounds/Silk/Silk'
+import { useBrandBackdrop } from '../../components/backgrounds/useBrandBackdrop'
 import { SUPPORT_EMAIL } from '../../config/contact'
 import { homeNs } from './locals'
 import './locals'
@@ -195,6 +198,7 @@ function ShotCarousel({
 export function Home() {
   const { t, i18n } = useTranslation(homeNs)
   const wide = useWideScreen()
+  const { dark, coarse, dpr, colors } = useBrandBackdrop()
   const shotsRef = useReveal<HTMLElement>()
   const dayRef = useReveal<HTMLElement>()
   const dir = i18n.resolvedLanguage?.startsWith('he') ? 'rtl' : 'ltr'
@@ -210,14 +214,55 @@ export function Home() {
           <p>{t('sentence')}</p>
         </div>
         <FloatingDumbbell />
-        <img
-          className='hero-shot'
-          src='/screenshots/dashboard.png'
-          alt={t('altDashboard')}
-        />
+        <div className='hero-shot-wrap'>
+          <div className='hero-orb'>
+            <Orb
+              colors={colors.orb}
+              backgroundColor='#000000'
+              size={wide ? 0.74 : 0.68}
+              glow={0.85}
+              bleed={0.55}
+              wobble={0.75}
+              highlight={0.8}
+              trail={0.65}
+              speed={0.65}
+              hoverIntensity={coarse ? 0 : 0.5}
+              rotateOnHover={!coarse}
+              followCursor={!coarse}
+              clickPulse={!coarse}
+              opacity={colors.orbOpacity}
+              dpr={dpr}
+            />
+          </div>
+          <img
+            className='hero-shot'
+            src='/screenshots/dashboard.png'
+            alt={t('altDashboard')}
+          />
+        </div>
       </section>
 
       <section className='shots' ref={shotsRef}>
+        <div className='shots-silk' aria-hidden='true'>
+          <Silk
+            color={colors.silk}
+            sheenColor={colors.silkSheen}
+            lightMode={!dark}
+            speed={coarse ? 1.6 : 2.4}
+            scale={wide ? 1.05 : 1.35}
+            rotation={0.28}
+            sheen={dark ? 0.7 : 0.38}
+            depth={dark ? 0.42 : 0.3}
+            glow={coarse ? 0.08 : 0.28}
+            ripple={0.55}
+            wave={1}
+            noiseIntensity={0.4}
+            fade={0.22}
+            mouseInteraction={false}
+            clickRipple={false}
+            dpr={dpr}
+          />
+        </div>
         <h2 className='band-title reveal'>{t('shotsLabel')}</h2>
         <div className='reveal'>
           {wide ? (

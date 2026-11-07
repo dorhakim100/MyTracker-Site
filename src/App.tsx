@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { SiteBackdrop } from './components/backgrounds/SiteBackdrop'
 import { SiteHeader } from './components/SiteHeader/SiteHeader'
 import { Home } from './pages/Home/Home'
 import { Privacy } from './pages/Privacy/Privacy'
@@ -43,6 +44,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <DocumentLanguage />
       <ScrollOnNavigate />
+      <SiteBackdrop />
       <SiteHeader />
       <main>
         <Routes>

@@ -5,6 +5,14 @@
   width: min(1080px, calc(100% - 2rem));
   margin: 0 auto;
   padding: 1.75rem 0 3rem;
+  h1,
+  h2,
+  p,
+  img,
+  figcaption {
+    -webkit-user-select: none; /* Safari */
+    user-select: none;
+  }
 
   h1 {
     margin: 0 0 0.6rem;
@@ -23,6 +31,10 @@
     color: var(--ink-on-surface);
     line-height: 1.5;
   }
+  .support {
+    -webkit-user-select: auto; /* Safari */
+    user-select: auto;
+  }
 }
 
 .hero {
@@ -33,22 +45,6 @@
   justify-items: center;
   padding-bottom: 3.5rem;
   text-align: start;
-
-  &::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 8%;
-    inset-inline-end: -4%;
-    width: min(28rem, 70vw);
-    height: 24rem;
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--primary-color) 32%, transparent),
-      transparent 68%
-    );
-    pointer-events: none;
-  }
 
   .hero-copy {
     max-width: 34rem;
@@ -62,7 +58,9 @@
     }
   }
 
-  .hero-shot {
+  .hero-shot-wrap {
+    position: relative;
+    z-index: 2;
     width: min(280px, 78vw);
     justify-self: center;
     animation: rise 340ms ease-out 90ms both;
@@ -93,7 +91,27 @@
   }
 }
 
+.hero-orb {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  height: 158%;
+  aspect-ratio: 1;
+  width: auto;
+  inset-inline-start: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+}
+
+[dir='rtl'] .hero-orb {
+  translate: 50% -50%;
+}
+
 .hero-shot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
   border-radius: 1.6rem;
   background: var(--surface-color);
   box-shadow: 0 0 0 2px
@@ -118,22 +136,20 @@
   min-width: 0;
   padding: 2.75rem 0 2.25rem;
 
-  &::before {
-    content: '';
+  .shots-silk {
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     top: 0;
     bottom: 0;
     left: 50%;
     width: 100vw;
     transform: translateX(-50%);
-    background: color-mix(
-      in srgb,
-      var(--primary-color) 14%,
-      var(--canvas-color)
-    );
-    border-block: 1px solid
-      color-mix(in srgb, white 62%, var(--primary-color-light));
+    pointer-events: none;
+  }
+
+  > :not(.shots-silk) {
+    position: relative;
+    z-index: 4;
   }
 
   .band-title {
@@ -296,11 +312,16 @@ html.dark-mode .day-icon {
       align-self: stretch;
     }
 
-    .hero-shot {
+    .hero-shot-wrap {
       grid-column: 2;
       grid-row: 1 / span 2;
       align-self: center;
       justify-self: end;
+    }
+
+    .hero-orb {
+      height: 170%;
+      inset-inline-start: 72%;
     }
   }
 
@@ -334,7 +355,7 @@ html.dark-mode .day-icon {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-copy,
-  .hero-shot {
+  .hero-shot-wrap {
     animation: none;
   }
 
