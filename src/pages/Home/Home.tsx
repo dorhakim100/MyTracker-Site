@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { FloatingDumbbell } from '../../components/FloatingDumbbell/FloatingDumbbell'
 import { SUPPORT_EMAIL } from '../../config/contact'
 import { homeNs } from './locals'
 import './locals'
@@ -208,6 +209,7 @@ export function Home() {
           <h1>{t('headline')}</h1>
           <p>{t('sentence')}</p>
         </div>
+        <FloatingDumbbell />
         <img
           className='hero-shot'
           src='/screenshots/dashboard.png'
