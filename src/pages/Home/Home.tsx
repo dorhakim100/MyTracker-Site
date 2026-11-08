@@ -55,6 +55,33 @@ const lines = [
   { title: 'progressTitle', body: 'progressBody', icon: ShowChartOutlinedIcon },
 ] as const
 
+const pairs = [
+  {
+    food: {
+      title: 'mealOneTitle',
+      detail: 'mealOneDetail',
+      body: 'mealOneBody',
+    },
+    train: {
+      title: 'liftOneTitle',
+      detail: 'liftOneDetail',
+      body: 'liftOneBody',
+    },
+  },
+  {
+    food: {
+      title: 'mealTwoTitle',
+      detail: 'mealTwoDetail',
+      body: 'mealTwoBody',
+    },
+    train: {
+      title: 'liftTwoTitle',
+      detail: 'liftTwoDetail',
+      body: 'liftTwoBody',
+    },
+  },
+] as const
+
 function useWideScreen() {
   const [wide, setWide] = useState(() => window.matchMedia(wideQuery).matches)
 
@@ -68,13 +95,16 @@ function useWideScreen() {
   return wide
 }
 
-function useReveal<T extends HTMLElement>() {
+function useReveal<T extends HTMLElement>(flagRoot = false) {
   const ref = useRef<T>(null)
 
   useEffect(() => {
     const root = ref.current
     if (!root) return
-    const items = [...root.querySelectorAll('.reveal')]
+    const items = [
+      ...(flagRoot ? [root] : []),
+      ...root.querySelectorAll('.reveal'),
+    ]
     const reduce = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches
@@ -94,9 +124,32 @@ function useReveal<T extends HTMLElement>() {
     )
     items.forEach((item) => observer.observe(item))
     return () => observer.disconnect()
-  }, [])
+  }, [flagRoot])
 
   return ref
+}
+
+function BridgeEntry({
+  side,
+  title,
+  detail,
+  body,
+}: {
+  side: string
+  title: string
+  detail: string
+  body: string
+}) {
+  return (
+    <article className='bridge-cell'>
+      <p className='bridge-inline-side'>{side}</p>
+      <h3>{title}</h3>
+      <p className='bridge-detail'>
+        {detail.includes('×') ? <bdi dir='ltr'>{detail}</bdi> : detail}
+      </p>
+      <p>{body}</p>
+    </article>
+  )
 }
 
 function Shot({
@@ -198,7 +251,8 @@ function ShotCarousel({
 export function Home() {
   const { t, i18n } = useTranslation(homeNs)
   const wide = useWideScreen()
-  const { dark, coarse, dpr, colors } = useBrandBackdrop()
+  const { dark, coarse, phone, dpr, colors } = useBrandBackdrop()
+  const bridgeRef = useReveal<HTMLElement>(true)
   const shotsRef = useReveal<HTMLElement>()
   const dayRef = useReveal<HTMLElement>()
   const dir = i18n.resolvedLanguage?.startsWith('he') ? 'rtl' : 'ltr'
@@ -239,6 +293,61 @@ export function Home() {
             src='/screenshots/dashboard.png'
             alt={t('altDashboard')}
           />
+        </div>
+      </section>
+
+      <section className='bridge' ref={bridgeRef}>
+        <div className='bridge-silk' aria-hidden='true'>
+          <Silk
+            color={colors.silk}
+            sheenColor={colors.silkSheen}
+            lightMode={!dark}
+            speed={phone ? 0.8 : 1.15}
+            scale={1.55}
+            rotation={0.04}
+            sheen={dark ? 0.4 : 0.28}
+            depth={dark ? 0.28 : 0.06}
+            glow={coarse ? 0.06 : 0.22}
+            ripple={0.9}
+            wave={0.35}
+            variation={0.4}
+            noiseIntensity={0.22}
+            fade={0.48}
+            mouseInteraction={!coarse && !reduceMotion}
+            interactionStrength={0.45}
+            clickRipple={!coarse && !reduceMotion}
+            intro={false}
+            dpr={dpr}
+          />
+        </div>
+        <div className='bridge-copy'>
+          <h2>{t('bridgeTitle')}</h2>
+          <p>{t('bridgeLead')}</p>
+        </div>
+        <div className='bridge-board'>
+          <div className='bridge-cols'>
+            <p className='bridge-col'>{t('foodSide')}</p>
+            <p className='bridge-col'>{t('trainSide')}</p>
+          </div>
+          <div className='bridge-rows'>
+            <span className='bridge-spine' aria-hidden='true' />
+            {pairs.map((pair) => (
+              <div className='bridge-row' key={pair.food.title}>
+                <BridgeEntry
+                  side={t('foodSide')}
+                  title={t(pair.food.title)}
+                  detail={t(pair.food.detail)}
+                  body={t(pair.food.body)}
+                />
+                <BridgeEntry
+                  side={t('trainSide')}
+                  title={t(pair.train.title)}
+                  detail={t(pair.train.detail)}
+                  body={t(pair.train.body)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
